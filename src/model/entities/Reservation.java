@@ -7,19 +7,19 @@ import java.util.concurrent.TimeUnit;
 public class Reservation {
 	
 	private Integer roomNumber;
-	private Date checkin;
-	private Date checkout;
+	private Date checkIn;
+	private Date checkOut;
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public Reservation() {
 		
 	}
-	
-	public Reservation(Integer roomNumber, Date checkin, Date checkout) {
+
+	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
 		this.roomNumber = roomNumber;
-		this.checkin = checkin;
-		this.checkout = checkout;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
 	}
 
 	public Integer getRoomNumber() {
@@ -30,35 +30,43 @@ public class Reservation {
 		this.roomNumber = roomNumber;
 	}
 
-	public Date getCheckin() {
-		return checkin;
+	public Date getCheckIn() {
+		return checkIn;
 	}
 
-	public Date getCheckout() {
-		return checkout;
+	public void setCheckIn(Date checkIn) {
+		this.checkIn = checkIn;
 	}
 
-	// long é o inteiro mais longo
-	public long duration() {
-		long diff = checkout.getTime() - checkin.getTime();
-		return TimeUnit.DAYS.convert(diff,TimeUnit.MILLISECONDS);
+	public Date getCheckOut() {
+		return checkOut;
+	}
+
+	public void setCheckOut(Date checkOut) {
+		this.checkOut = checkOut;
 	}
 	
-	public void updateDates(Date checkin, Date checkout) {
-		this.checkin = checkin;
-		this.checkout = checkout;
+	public long duration() {
+		long diff = checkOut.getTime() - checkIn.getTime();
+		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+	}
+
+	public void updateDates(Date checkIn, Date checkOut) {
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
 	}
 	
 	@Override
 	public String toString() {
-		return "Room number: "
+		return "Room"
 				+ roomNumber
-				+ " , check-in: "
-				+ sdf.format(checkin)
+				+ ", check-in: "
+				+ sdf.format(checkIn)
 				+ ", check-out: "
-				+ sdf.format(checkout)
+				+ sdf.format(checkOut)
 				+ ", "
 				+ duration()
 				+ " nights";
 	}
+	
 }
